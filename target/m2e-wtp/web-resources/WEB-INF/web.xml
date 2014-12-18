@@ -23,7 +23,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
-  <display-name>Central Authentication System (CAS) ${project.version}</display-name>
+  <display-name>Central Authentication System (CAS) 4.1.0-SNAPSHOT</display-name>
 
   <context-param>
     <param-name>contextConfigLocation</param-name>

@@ -147,8 +147,56 @@
         </entry>
     </util:map>
 
-    <bean id="serviceRegistryDao" class="org.jasig.cas.services.JsonServiceRegistryDao"
-          c:configDirectory="${service.registry.config.location:classpath:services}" />
+	<!-- AA: Commmented out for the configuration of OAuth2 Server Support Authentication -->
+    <!-- bean id="serviceRegistryDao" class="org.jasig.cas.services.JsonServiceRegistryDao"
+          c:configDirectory="${service.registry.config.location:classpath:services}" /-->
+
+	<bean id="serviceRegistryDao" class="org.jasig.cas.services.InMemoryServiceRegistryDaoImpl"
+            p:registeredServices-ref="registeredServicesList" />
+
+    <util:list id="registeredServicesList">
+      
+      <!-- AA: A dedicated component to recognize OAuth Callback Authorization requests -->
+      <bean class="org.jasig.cas.support.oauth.services.OAuthCallbackAuthorizeService">
+        <property name="id" value="0" />
+        <property name="name" value="HTTP" />
+        <property name="description" value="internal oauth wrapper controller" />
+        <property name="serviceId" value="http://localhost:8080/cas2/oauth2.0/callbackAuthorize" />
+      </bean>
+
+	  <!-- AA: OAuth client #1 -->
+      <bean class="org.jasig.cas.support.oauth.services.OAuthRegisteredService">
+        <property name="id" value="1" />
+        <property name="name" value="my great webapp for OAuth" />
+        <property name="description" value="The greatest application ever!" />
+        <property name="clientId" value="this_is_the_key" />
+        <property name="clientSecret" value="this_is_the_secret" />
+        <property name="serviceId" value="http://localhost:8080/cas/login\?client_name=CasOAuthWrapperClient" />
+      </bean>
+      <bean class="org.jasig.cas.services.RegisteredServiceImpl">
+        <property name="id" value="2" />
+        <property name="name" value="a CAS service for another CAS server" />
+        <property name="description" value="desc" />
+        <property name="serviceId" value="http://localhost:8080/cas/login?client_name=CasClient" />
+      </bean>
+      
+      <!-- AA: OAuth client #2 -->
+      <bean class="org.jasig.cas.support.oauth.services.OAuthRegisteredService">
+        <property name="id" value="3" />
+        <property name="name" value="my great webapp for OAuth" />
+        <property name="description" value="The greatest application ever!" />
+        <property name="clientId" value="this_is_the_key" />
+        <property name="clientSecret" value="this_is_the_secret" />
+        <property name="serviceId" value="http://localhost:8080/cas/login\?client_name=CasOAuthWrapperClient" />
+      </bean>
+
+      <bean class="org.jasig.cas.services.RegisteredServiceImpl">
+        <property name="id" value="4" />
+        <property name="name" value="a CAS service for another CAS server" />
+        <property name="description" value="desc" />
+        <property name="serviceId" value="http://localhost:8080/cas/login?client_name=CasClient" />
+      </bean>  
+    </util:list>
 
     <bean id="auditTrailManager" class="com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager" />
 
