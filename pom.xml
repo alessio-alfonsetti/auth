@@ -35,14 +35,13 @@
 	  <type>war</type>
 	  <scope>runtime</scope>
 	</dependency>
-  	<!-- dependency>
+  	<dependency>
       <groupId>org.jasig.cas</groupId>
       <artifactId>cas-management-webapp</artifactId>
-      <version>${cas.version}</version>
+      <version>4.0.0</version>
       <type>war</type>
       <scope>runtime</scope>
-    </dependency-->
-  
+    </dependency>
   	<dependency>
 	  <groupId>org.jasig.cas</groupId>
 	  <artifactId>cas-server-support-generic</artifactId>
@@ -50,7 +49,6 @@
 	  <type>jar</type>
 	  <scope>runtime</scope>
 	</dependency>
-  
     <dependency>
       <groupId>org.jasig.cas</groupId>
       <artifactId>cas-server-webapp-support</artifactId>
@@ -79,7 +77,6 @@
 	  <artifactId>spring-test</artifactId>
 	  <version>${spring.version}</version>
 	</dependency>
-	    
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -90,7 +87,7 @@
     <dependency>
       <groupId>taglibs</groupId>
       <artifactId>standard</artifactId>
-      <version>1.1.2</version>
+      <version>${taglibs.version}</version>
       <type>jar</type>
       <scope>runtime</scope>
     </dependency>
@@ -108,24 +105,23 @@
     <dependency>
 	  <groupId>c3p0</groupId>
 	  <artifactId>c3p0</artifactId>
-	  <version>0.9.1.2</version>
+	  <version>${c3p0.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
-    
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <configuration>
-          <warName>cas</warName>
+          <warName>auth</warName>
           <webResources>
             <resource>
               <directory>${basedir}/src/main/webapp/WEB-INF</directory>
@@ -138,7 +134,6 @@
           </webResources>
         </configuration>
       </plugin>
-
       <!-- added to fix bugs 
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -159,7 +154,9 @@
     <!-- >cas.version>4.0.0</cas.version-->
     <cas.version>4.1.0-SNAPSHOT</cas.version>
     <cas-server-security-filter.version>2.0.0</cas-server-security-filter.version>
-    
+    <junit.version>4.11</junit.version>
+    <c3p0.version>0.9.1.2</c3p0.version>
+    <taglibs.version>1.1.2</taglibs.version>
     <!-- added to fix bugs 
     <findbugs.onlyAnalyze>false</findbugs.onlyAnalyze> < !- - default value - - >
     -->
@@ -177,10 +174,10 @@
 				<enabled>true</enabled>
 			</snapshots>
 	</repository>
-   <!-- repository>
+   <repository>
       <id>ja-sig</id>
       <url>http://oss.sonatype.org/content/repositories/releases/</url>
-   </repository -->
+   </repository>
   </repositories>
   
 </project>
