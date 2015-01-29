@@ -46,12 +46,10 @@ public class WiringTests {
                 "file:src/main/webapp/WEB-INF/deployerConfigContext.xml",
         "file:src/main/webapp/WEB-INF/spring-configuration/*.xml");
         applicationContext.setServletContext(new MockServletContext(new ResourceLoader() {
-            @Override
             public Resource getResource(final String location) {
                 return new FileSystemResource("src/main/webapp" + location);
             }
 
-            @Override
             public ClassLoader getClassLoader() {
                 return getClassLoader();
             }

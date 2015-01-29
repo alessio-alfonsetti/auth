@@ -18,41 +18,72 @@
   -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <parent>
-    <groupId>org.jasig.cas</groupId>
-    <artifactId>cas-server</artifactId>
-    <version>4.1.0-SNAPSHOT</version>
-  </parent>
+  
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>cas-server-webapp</artifactId>
+  <groupId>org.adp</groupId>
+  <version>1.0.0-SNAPSHOT</version>
+  <artifactId>adp-cas-server-webapp</artifactId>
   <packaging>war</packaging>
-  <name>Apereo CAS Web Application</name>
+  <name>ADP CAS</name>
+  
   <dependencies>
+  	
+  	<dependency>
+	  <groupId>org.jasig.cas</groupId>
+	  <artifactId>cas-server-webapp</artifactId>
+	  <version>${cas.version}</version>
+	  <type>war</type>
+	  <scope>runtime</scope>
+	</dependency>
+  	<!-- dependency>
+      <groupId>org.jasig.cas</groupId>
+      <artifactId>cas-management-webapp</artifactId>
+      <version>${cas.version}</version>
+      <type>war</type>
+      <scope>runtime</scope>
+    </dependency-->
+  
+  	<dependency>
+	  <groupId>org.jasig.cas</groupId>
+	  <artifactId>cas-server-support-generic</artifactId>
+	  <version>${cas.version}</version>
+	  <type>jar</type>
+	  <scope>runtime</scope>
+	</dependency>
+  
     <dependency>
       <groupId>org.jasig.cas</groupId>
       <artifactId>cas-server-webapp-support</artifactId>
-      <version>${project.version}</version>
+      <version>${cas.version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
 	  <groupId>org.jasig.cas</groupId>
 	  <artifactId>cas-server-core</artifactId>
-	  <version>${project.version}</version>
+	  <version>${cas.version}</version>
 	  <type>test-jar</type>
 	</dependency>
 	<dependency>
 	  <groupId>org.jasig.cas</groupId>
 	  <artifactId>cas-server-support-oauth</artifactId>
-	  <version>${project.version}</version>
+	  <version>${cas.version}</version>
 	</dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-expression</artifactId>
+      <version>${spring.version}</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
+	  <groupId>org.springframework</groupId>
+	  <artifactId>spring-test</artifactId>
+	  <version>${spring.version}</version>
+	</dependency>
+	    
+    <dependency>
       <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${servlet.api.version}</version>
       <type>jar</type>
       <scope>runtime</scope>
     </dependency>
@@ -66,12 +97,30 @@
     <dependency>
       <groupId>org.jasig.cas</groupId>
       <artifactId>cas-server-security-filter</artifactId>
+      <version>${cas-server-security-filter.version}</version>
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+	  <groupId>org.jasig.cas</groupId>
+	  <artifactId>cas-server-support-jdbc</artifactId>
+	  <version>${cas.version}</version>
+    </dependency>
+    <dependency>
+	  <groupId>c3p0</groupId>
+	  <artifactId>c3p0</artifactId>
+	  <version>0.9.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
+    
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
@@ -89,11 +138,49 @@
           </webResources>
         </configuration>
       </plugin>
+
+      <!-- added to fix bugs 
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+	        <onlyAnalyze>${findbugs.onlyAnalyze}</onlyAnalyze>
+	      </configuration>
+      </plugin>
+      -->
     </plugins>
   </build>
 
   <properties>
     <cs.dir>${project.parent.basedir}</cs.dir>
+    <spring.version>4.1.1.RELEASE</spring.version>
+    <servlet.api.version>3.0.1</servlet.api.version>
+    <!-- >cas.version>4.0.0</cas.version-->
+    <cas.version>4.1.0-SNAPSHOT</cas.version>
+    <cas-server-security-filter.version>2.0.0</cas-server-security-filter.version>
+    
+    <!-- added to fix bugs 
+    <findbugs.onlyAnalyze>false</findbugs.onlyAnalyze> < !- - default value - - >
+    -->
   </properties>
-</project>
 
+  <repositories>
+	<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+	</repository>
+   <!-- repository>
+      <id>ja-sig</id>
+      <url>http://oss.sonatype.org/content/repositories/releases/</url>
+   </repository -->
+  </repositories>
+  
+</project>

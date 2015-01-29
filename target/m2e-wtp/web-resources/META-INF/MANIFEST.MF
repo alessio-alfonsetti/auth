@@ -1,12 +1,5 @@
 Manifest-Version: 1.0
-Implementation-Vendor: Jasig
-Implementation-Title: Apereo CAS Web Application
-Implementation-Version: 4.1.0-SNAPSHOT
-Implementation-Vendor-Id: org.jasig.cas
-Specification-Vendor: Jasig
 Build-Jdk: 1.7.0_60
-Built-By: alfonsetti
+Built-By: Alfonsetti
 Created-By: Maven Integration for Eclipse
-Specification-Title: Apereo CAS Web Application
-Specification-Version: 4.1.0-SNAPSHOT
 
