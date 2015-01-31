@@ -35,13 +35,13 @@
 	  <type>war</type>
 	  <scope>runtime</scope>
 	</dependency>
-  	<dependency>
+  	<!-- dependency>
       <groupId>org.jasig.cas</groupId>
       <artifactId>cas-management-webapp</artifactId>
       <version>4.0.0</version>
       <type>war</type>
       <scope>runtime</scope>
-    </dependency>
+    </dependency-->
   	<dependency>
 	  <groupId>org.jasig.cas</groupId>
 	  <artifactId>cas-server-support-generic</artifactId>
@@ -53,7 +53,7 @@
       <groupId>org.jasig.cas</groupId>
       <artifactId>cas-server-webapp-support</artifactId>
       <version>${cas.version}</version>
-      <scope>compile</scope>
+      <!-- scope>compile</scope-->
     </dependency>
     <dependency>
 	  <groupId>org.jasig.cas</groupId>
@@ -72,6 +72,11 @@
       <version>${spring.version}</version>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
     <dependency>
 	  <groupId>org.springframework</groupId>
 	  <artifactId>spring-test</artifactId>

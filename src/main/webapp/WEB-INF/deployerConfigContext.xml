@@ -112,7 +112,7 @@
             </map>
         </property>
     </bean>
-
+	
     <!-- Required for proxy ticket mechanism -->
     <bean id="proxyPrincipalResolver"
           class="org.jasig.cas.authentication.principal.BasicPrincipalResolver" />
@@ -167,8 +167,8 @@
 	  <!-- AA: OAuth client #1 -->
       <bean class="org.jasig.cas.support.oauth.services.OAuthRegisteredService">
         <property name="id" value="1" />
-        <property name="name" value="my great webapp for OAuth" />
-        <property name="description" value="The greatest application ever!" />
+        <property name="name" value="http://www.solofarmaciveterinari.it" />
+        <property name="description" value="Base URL of the website" />
         <property name="clientId" value="this_is_the_key" />
         <property name="clientSecret" value="this_is_the_secret" />
         <property name="serviceId" value="http://localhost:8080/cas/login\?client_name=CasOAuthWrapperClient" />
@@ -216,22 +216,4 @@
               p:sessionCountWarnThreshold="100000" />
     </util:list>
     
-    <!-- AA: Database (JDBC) Authentication Support 
-    <bean id="dataSource"
-	  class="com.mchange.v2.c3p0.ComboPooledDataSource"
-	  p:driverClass="${database.driverClass}"
-	  p:jdbcUrl="${database.url}"
-	  p:user="${database.user}"
-	  p:password="${database.password}"
-	  p:initialPoolSize="${database.pool.minSize}"
-	  p:minPoolSize="${database.pool.minSize}"
-	  p:maxPoolSize="${database.pool.maxSize}"
-	  p:maxIdleTimeExcessConnections="${database.pool.maxIdleTime}"
-	  p:checkoutTimeout="${database.pool.maxWait}"
-	  p:acquireIncrement="${database.pool.acquireIncrement}"
-	  p:acquireRetryAttempts="${database.pool.acquireRetryAttempts}"
-	  p:acquireRetryDelay="${database.pool.acquireRetryDelay}"
-	  p:idleConnectionTestPeriod="${database.pool.idleConnectionTestPeriod}"
-	  p:preferredTestQuery="${database.pool.connectionHealthQuery}" />
-	  -->
 </beans>
