@@ -61,8 +61,7 @@
                    | set its name to something other than its default name (typically the simple class name).
                    -->
                 <entry key-ref="proxyAuthenticationHandler" value-ref="proxyPrincipalResolver" />
-                <!-- entry key-ref="primaryAuthenticationHandler" value-ref="primaryPrincipalResolver" /-->
-                <entry key-ref="primaryAuthenticationHandler" value-ref="dbAuthHandler" />
+                <entry key-ref="primaryAuthenticationHandler" value-ref="primaryPrincipalResolver" />
             </map>
         </constructor-arg>
 
@@ -104,26 +103,27 @@
        | * org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler
        | * org.jasig.cas.adaptors.x509.authentication.handler.support.X509CredentialsAuthenticationHandler
        | * org.jasig.cas.support.spnego.authentication.handler.support.JCIFSSpnegoAuthenticationHandler
+       -->
     <bean id="primaryAuthenticationHandler"
           class="org.jasig.cas.authentication.AcceptUsersAuthenticationHandler">
         <property name="users">
             <map>
-                <entry key="casuser" value="Mellon"/>
+                <entry key="gianluc" value="chimiss"/>
             </map>
         </property>
     </bean>
-	-->
 	
+	<!-- 
 	<bean id="passwordEncoder"
       class="org.jasig.cas.authentication.handler.DefaultPasswordEncoder"
       c:encodingAlgorithm="MD5"
       p:characterEncoding="UTF-8" />
 
-	<bean id="dbAuthHandler"
+	<bean id="primaryAuthenticationHandler"
       class="org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler"
       p:dataSource-ref="dataSource"
       p:passwordEncoder-ref="passwordEncoder"
-      p:sql="select user_password from joomla_par.sv_users where lower(user_username) = lower(?)" />
+      p:sql="select user_password from sv_OLD_users where lower(user_username) = lower(?)" />
 	 
 	<bean id="dataSource"
 	  class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -134,7 +134,7 @@
 	  p:initialPoolSize="1"
 	  p:minPoolSize="3"
 	  p:maxPoolSize="5" />
-	
+	 -->
     <!-- Required for proxy ticket mechanism -->
     <bean id="proxyPrincipalResolver"
           class="org.jasig.cas.authentication.principal.BasicPrincipalResolver" />
