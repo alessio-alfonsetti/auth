@@ -183,7 +183,7 @@
         <property name="id" value="0" />
         <property name="name" value="HTTP" />
         <property name="description" value="OAUTH_WRAPPER_CONTROLLER" />
-        <property name="serviceId" value="http://solofarmaciveterinari.it/auth2/oauth2.0/callbackAuthorize" />
+        <property name="serviceId" value="http://tuttoparafarmacie.com/auth2/oauth2.0/callbackAuthorize" />
       </bean>
 
 	  <!-- AA: OAuth client #1 -->
@@ -193,13 +193,13 @@
         <property name="description" value="http://www.solofarmaciveterinari.it" />
         <property name="clientId" value="app1" />
         <property name="clientSecret" value="key1" />
-        <property name="serviceId" value="http://solofarmaciveterinari.it/auth/login\?client_name=app1Client" />
+        <property name="serviceId" value="http://tuttoparafarmacie.com/auth/login\?client_name=app1Client" />
       </bean>
       <bean class="org.jasig.cas.services.RegisteredServiceImpl">
         <property name="id" value="2" />
         <property name="name" value="a CAS service for another CAS server" />
         <property name="description" value="desc" />
-        <property name="serviceId" value="http://solofarmaciveterinari.it/auth/login?client_name=CasClient" />
+        <property name="serviceId" value="http://tuttoparafarmacie.com/auth/login?client_name=CasClient" />
       </bean>
       
       <!-- AA: OAuth client #2 -->
@@ -209,13 +209,13 @@
         <property name="description" value="PrivateMsg" />
         <property name="clientId" value="privatemsg" />
         <property name="clientSecret" value="privatemsgS1cr3t" />
-        <property name="serviceId" value="http://solofarmaciveterinari.it/auth/login\?client_name=privatemsgClient" />
+        <property name="serviceId" value="http://tuttoparafarmacie.com/auth/login\?client_name=privatemsgClient" />
       </bean>
       <bean class="org.jasig.cas.services.RegisteredServiceImpl">
         <property name="id" value="4" />
         <property name="name" value="a CAS service for another CAS server" />
         <property name="description" value="desc" />
-        <property name="serviceId" value="http://solofarmaciveterinari.it/auth/login?client_name=CasClient" />
+        <property name="serviceId" value="http://tuttoparafarmacie.com/auth/login?client_name=CasClient" />
       </bean>  
     </util:list>
 
