@@ -31,5 +31,5 @@
 		p:cookieSecure="true"
 		p:cookieMaxAge="-1"
 		p:cookieName="CASTGC"
-		p:cookiePath="/cas" />
+		p:cookiePath="/auth" />
 </beans>
