@@ -103,7 +103,7 @@
        | * org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler
        | * org.jasig.cas.adaptors.x509.authentication.handler.support.X509CredentialsAuthenticationHandler
        | * org.jasig.cas.support.spnego.authentication.handler.support.JCIFSSpnegoAuthenticationHandler
-       -->
+       
     <bean id="primaryAuthenticationHandler"
           class="org.jasig.cas.authentication.AcceptUsersAuthenticationHandler">
         <property name="users">
@@ -112,6 +112,32 @@
             </map>
         </property>
     </bean>
+	-->
+	
+	<!-- JDBC Authentication -->
+	<bean id="passwordEncoder"
+      class="org.jasig.cas.authentication.handler.DefaultPasswordEncoder"
+      c:encodingAlgorithm="MD5"
+      p:characterEncoding="UTF-8" />
+
+ 	<bean id="primaryAuthenticationHandler"
+      class="org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler"
+      p:dataSource-ref="dataSource"
+      p:passwordEncoder-ref="passwordEncoder"
+      p:sql="select user_password from sv_OLD_users where lower(user_username) = lower(?)" />
+  
+  	<!-- MySQL connector 
+   	class="org.apache.commons.dbcp.BasicDataSource"
+  	-->
+ 	<bean id="dataSource" 
+   	  class="com.mchange.v2.c3p0.ComboPooledDataSource"
+   	  p:driverClass="com.mysql.jdbc.Driver"
+      p:jdbcUrl="jdbc:mysql://localhost:3306/joomla_par"
+      p:user="joomlapar"
+      p:password="joomlapar123"
+      p:initialPoolSize="1"
+      p:minPoolSize="3"
+      p:maxPoolSize="5" />
 	
 	<!-- 
 	<bean id="passwordEncoder"
@@ -176,47 +202,47 @@
 	<bean id="serviceRegistryDao" class="org.jasig.cas.services.InMemoryServiceRegistryDaoImpl"
             p:registeredServices-ref="registeredServicesList" />
 
-    <util:list id="registeredServicesList">
+    	<util:list id="registeredServicesList">
       
-      <!-- AA: A dedicated component to recognize OAuth Callback Authorization requests -->
-      <bean class="org.jasig.cas.support.oauth.services.OAuthCallbackAuthorizeService">
-        <property name="id" value="0" />
-        <property name="name" value="HTTP" />
-        <property name="description" value="OAUTH_WRAPPER_CONTROLLER" />
-        <property name="serviceId" value="http://tuttoparafarmacie.com/auth2/oauth2.0/callbackAuthorize" />
-      </bean>
+      	<!-- AA: A dedicated component to recognize OAuth Callback Authorization requests -->
+	    <bean class="org.jasig.cas.support.oauth.services.OAuthCallbackAuthorizeService">
+	        <property name="id" value="0" />
+	        <property name="name" value="HTTP" />
+	        <property name="description" value="OAUTH_WRAPPER_CALLBACK_URL" />
+	        <property name="serviceId" value="http://tuttoparafarmacie.com/oauth2.0/callbackAuthorize" />
+	    </bean>
 
 	  <!-- AA: OAuth client #1 -->
       <bean class="org.jasig.cas.support.oauth.services.OAuthRegisteredService">
         <property name="id" value="1" />
-        <property name="name" value="http://www.solofarmaciveterinari.it" />
-        <property name="description" value="http://www.solofarmaciveterinari.it" />
-        <property name="clientId" value="app1" />
-        <property name="clientSecret" value="key1" />
-        <property name="serviceId" value="http://tuttoparafarmacie.com/auth/login\?client_name=app1Client" />
+        <property name="name" value="privateMsg" />
+        <property name="description" value="privateMsg" />
+        <property name="clientId" value="privateMsg" />
+        <property name="clientSecret" value="privateMsgSecret" />
+        <property name="serviceId" value="http://tuttoparafarmacie.com/privateMsg?client_name=privateMsg" />
       </bean>
-      <bean class="org.jasig.cas.services.RegisteredServiceImpl">
+      <!-- bean class="org.jasig.cas.services.RegisteredServiceImpl">
         <property name="id" value="2" />
         <property name="name" value="a CAS service for another CAS server" />
         <property name="description" value="desc" />
         <property name="serviceId" value="http://tuttoparafarmacie.com/auth/login?client_name=CasClient" />
-      </bean>
+      </bean-->
       
-      <!-- AA: OAuth client #2 -->
-      <bean class="org.jasig.cas.support.oauth.services.OAuthRegisteredService">
-        <property name="id" value="3" />
+	  <!-- AA: OAuth client #2 -->
+      <!-- bean class="org.jasig.cas.support.oauth.services.OAuthRegisteredService">
+        <property name="id" value="2" />
         <property name="name" value="WEBAPP1" />
         <property name="description" value="PrivateMsg" />
         <property name="clientId" value="privatemsg" />
         <property name="clientSecret" value="privatemsgS1cr3t" />
         <property name="serviceId" value="http://tuttoparafarmacie.com/auth/login\?client_name=privatemsgClient" />
-      </bean>
-      <bean class="org.jasig.cas.services.RegisteredServiceImpl">
+      </bean-->
+      <!-- bean class="org.jasig.cas.services.RegisteredServiceImpl">
         <property name="id" value="4" />
         <property name="name" value="a CAS service for another CAS server" />
         <property name="description" value="desc" />
         <property name="serviceId" value="http://tuttoparafarmacie.com/auth/login?client_name=CasClient" />
-      </bean>  
+      </bean-->  
     </util:list>
 
     <bean id="auditTrailManager" class="com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager" />

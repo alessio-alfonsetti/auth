@@ -84,6 +84,14 @@
   <bean id="errorHandlerResolver" class="org.jasig.cas.web.FlowExecutionExceptionResolver"/>
 
   <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+  
+  <bean
+    id="oauth20WrapperController"
+    class="org.jasig.cas.support.oauth.web.OAuth20WrapperController"
+    p:loginUrl="http://tuttoparafarmacie.com/auth/login"
+    p:servicesManager-ref="servicesManager"
+    p:ticketRegistry-ref="ticketRegistry"
+    p:timeout="7200" />
 
   <bean
       id="handlerMappingC"
@@ -104,6 +112,7 @@
         <prop key="/oauth2.0/*">oauth20WrapperController</prop>
       </util:properties>
     </property>
+    <!-- property name="alwaysUseFullPath" value="true" /-->
     <!--
      uncomment this to enable sending PageRequest events.
      <property
@@ -114,14 +123,6 @@
      </property>
       -->
   </bean>
-
-  <bean
-    id="oauth20WrapperController"
-    class="org.jasig.cas.support.oauth.web.OAuth20WrapperController"
-    p:loginUrl="http://localhost:8080/auth2/login"
-    p:servicesManager-ref="servicesManager"
-    p:ticketRegistry-ref="ticketRegistry"
-    p:timeout="7200" />
 
   <bean id="passThroughController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
 
