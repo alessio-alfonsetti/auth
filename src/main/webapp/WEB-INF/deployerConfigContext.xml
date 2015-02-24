@@ -209,7 +209,7 @@
 	        <property name="id" value="0" />
 	        <property name="name" value="HTTP" />
 	        <property name="description" value="OAUTH_WRAPPER_CALLBACK_URL" />
-	        <property name="serviceId" value="http://tuttoparafarmacie.com/oauth2.0/callbackAuthorize" />
+	        <property name="serviceId" value="http://tuttoparafarmacie.com/auth/oauth2.0/callbackAuthorize" />
 	    </bean>
 
 	  <!-- AA: OAuth client #1 -->
@@ -219,7 +219,7 @@
         <property name="description" value="privateMsg" />
         <property name="clientId" value="privateMsg" />
         <property name="clientSecret" value="privateMsgSecret" />
-        <property name="serviceId" value="http://tuttoparafarmacie.com/privateMsg?client_name=privateMsg" />
+        <property name="serviceId" value="http://msg.tuttoparafarmacie.com/login?client_name=privateMsg" />
       </bean>
       <!-- bean class="org.jasig.cas.services.RegisteredServiceImpl">
         <property name="id" value="2" />
